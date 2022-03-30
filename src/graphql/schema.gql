@@ -1,0 +1,41 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateProdutoInput {
+  bar_code: String!
+  name: String!
+  price: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createProduto(createProdutoInput: CreateProdutoInput!): Produto!
+  removeProduto(id: String!): Boolean!
+  updateProduto(updateProdutoInput: UpdateProdutoInput!): Produto!
+}
+
+type Produto {
+  bar_code: String!
+  created_at: DateTime!
+  id: String!
+  name: String!
+  price: Float!
+}
+
+type Query {
+  produto(id: String!): Produto!
+  produtos: [Produto!]!
+}
+
+input UpdateProdutoInput {
+  bar_code: String
+  created_at: DateTime
+  id: String
+  name: String
+  price: Float
+}
