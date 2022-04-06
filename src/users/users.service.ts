@@ -29,7 +29,7 @@ export class UsersService {
     return await this.prisma.user.findMany();
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const user = await this.prisma.user.findFirst({ where: { id } });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
@@ -37,7 +37,7 @@ export class UsersService {
     return user;
   }
 
-  async update(id: string, updateUserInput: UpdateUserInput) {
+  async update(id: number, updateUserInput: UpdateUserInput) {
     const user = await this.prisma.user.findFirst({ where: { id } });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
@@ -51,7 +51,7 @@ export class UsersService {
     return userUpdated;
   }
 
-  async remove(id: string) {
+  async remove(id: number) {
     const user = await this.prisma.user.findFirst({ where: { id } });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
