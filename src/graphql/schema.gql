@@ -3,15 +3,15 @@
 # ------------------------------------------------------
 
 input CreateUserInput {
-  active: Boolean!
-  avatar: String!
-  created_at: String!
+  active: Boolean
+  avatar: String
+  created_at: String
   email: String!
   name: String!
   password: String!
-  updated_at: String!
-  user_creation: String!
-  user_last_update: String!
+  updated_at: String
+  user_creation: String
+  user_last_update: String
 }
 
 type Mutation {
@@ -45,7 +45,6 @@ type User {
   email: String!
   id: Int!
   name: String!
-  password: String!
   updated_at: String!
   user_creation: String!
   user_last_update: String!

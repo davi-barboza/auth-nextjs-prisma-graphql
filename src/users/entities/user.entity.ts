@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 
 @ObjectType()
@@ -12,7 +12,7 @@ export class User implements Prisma.UserUncheckedCreateInput {
   @Field()
   email: string;
 
-  @Field()
+  @HideField()
   password: string;
 
   @Field()

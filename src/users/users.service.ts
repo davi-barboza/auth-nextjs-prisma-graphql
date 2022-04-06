@@ -1,26 +1,23 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
+
   async create(createUserInput: CreateUserInput) {
     const user = await this.prisma.user.create({
       data: {
         ...createUserInput,
+        password: await bcrypt.hash(createUserInput.password, 10),
       },
     });
 
     if (!user) {
-      throw new InternalServerErrorException(
-        'Não foi possível criar o usuário',
-      );
+      throw new InternalServerErrorException('Não foi possível criar o usuário');
     }
     return user;
   }
