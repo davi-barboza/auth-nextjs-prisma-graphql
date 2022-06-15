@@ -2,40 +2,63 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateProdutoInput {
-  bar_code: String!
-  name: String!
-  price: Float!
+input AuthInput {
+  email: String!
+  password: String!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+type AuthType {
+  access_token: String!
+  user: User!
+}
+
+input CreateUserInput {
+  active: Boolean
+  avatar: String
+  created_at: String
+  email: String!
+  name: String!
+  password: String!
+  updated_at: String
+  user_create: Float
+  user_last_update: Float
+}
 
 type Mutation {
-  createProduto(createProdutoInput: CreateProdutoInput!): Produto!
-  removeProduto(id: String!): Boolean!
-  updateProduto(updateProdutoInput: UpdateProdutoInput!): Produto!
-}
-
-type Produto {
-  bar_code: String!
-  created_at: DateTime!
-  id: String!
-  name: String!
-  price: Float!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(authInput: AuthInput!): AuthType!
+  removeUser(id: Int!): Boolean!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  produto(id: String!): Produto!
-  produtos: [Produto!]!
+  currentUser: User!
+  findByEmail(email: String!): User!
+  user(id: Int!): User!
+  users: [User!]!
 }
 
-input UpdateProdutoInput {
-  bar_code: String
-  created_at: DateTime
-  id: String
+input UpdateUserInput {
+  active: Boolean
+  avatar: String
+  created_at: String
+  email: String
+  id: Int!
   name: String
-  price: Float
+  password: String
+  updated_at: String
+  user_create: Int
+  user_last_update: Int
+}
+
+type User {
+  active: Boolean!
+  avatar: String!
+  created_at: String!
+  email: String!
+  id: Int!
+  name: String!
+  updated_at: String!
+  user_create: Int!
+  user_last_update: Int!
 }
