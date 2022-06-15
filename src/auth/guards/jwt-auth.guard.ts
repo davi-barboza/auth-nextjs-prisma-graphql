@@ -37,10 +37,10 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
     return canActivatePromise.catch((error) => {
       if (error instanceof UnauthorizedError) {
-        throw new UnauthorizedException(error.message, 'teste2');
+        throw new UnauthorizedException(error.message);
       }
 
-      throw new UnauthorizedException('teste1');
+      throw new UnauthorizedException('Usuário não autenticado');
     });
   }
 }
